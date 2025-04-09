@@ -1,0 +1,127 @@
+<!-- Our Hero The Villain Inc. Embedded Music Player -->
+<html>
+<head>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f8f8f8; color: #111; padding: 20px; }
+    .player-container { max-width: 600px; margin: auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+    .logo-container { text-align: center; padding: 10px 0; }
+    .logo-container img { max-width: 150px; height: auto; margin-bottom: 10px; }
+    .player-header { display: flex; align-items: center; padding: 20px; border-bottom: 1px solid #eee; }
+    .cover-art { width: 80px; height: 80px; margin-right: 20px; border-radius: 8px; object-fit: cover; }
+    .track-info h2 { margin: 0; font-size: 18px; color: #333; }
+    .track-info p { margin: 5px 0 0; color: #777; font-size: 14px; }
+    .controls { text-align: center; padding: 15px; border-bottom: 1px solid #eee; }
+    .controls button { background: none; border: none; color: #333; font-size: 24px; margin: 0 10px; cursor: pointer; transition: 0.2s; }
+    .controls button:hover { color: #000; }
+    .playlist { padding: 10px 0; max-height: 300px; overflow-y: auto; }
+    .playlist-item { padding: 12px 20px; cursor: pointer; display: flex; justify-content: space-between; border-bottom: 1px solid #f0f0f0; }
+    .playlist-item:hover { background: #f5f5f5; }
+    .playlist-item.active { background: #e6f7ff; font-weight: bold; }
+    audio { width: 100%; margin-top: 10px; display: none; }
+  </style>
+</head>
+<body>
+  <div class="player-container">
+    <div class="logo-container">
+      <img src="logo.png" alt="Your Logo">
+      <h1 style="margin-top: 10px; font-size: 20px; color: #333;">Our Hero The Villain Inc.</h1>
+    </div>
+    <div class="player-header">
+      <img class="cover-art" src="move-quick.png" id="cover" alt="Album Cover">
+      <div class="track-info">
+        <h2 id="title">Move Quick</h2>
+        <p id="artist">T.R.A.P. Mason, Benny Boy</p>
+      </div>
+    </div>
+    <div class="controls">
+      <button onclick="prevTrack()">⏮️</button>
+      <button onclick="togglePlay()" id="playBtn">▶️</button>
+      <button onclick="nextTrack()">⏭️</button>
+    </div>
+    <audio id="audio" src="move-quick.mp3" onended="nextTrack()"></audio>
+    <div class="playlist" id="playlist"></div>
+  </div>
+
+  <script>
+    const tracks = [
+      { title: "Move Quick", artist: "T.R.A.P. Mason, Benny Boy", file: "move-quick.mp3", cover: "move-quick.png" },
+      { title: "Stay Quiet", artist: "T.R.A.P. Mason, Benny Boy", file: "stay-quiet.mp3", cover: "stay-quiet.png" },
+      { title: "Endz", artist: "T.R.A.P. Mason, Benny Boy", file: "endz.mp3", cover: "endz.png" },
+      { title: "Aint No Way", artist: "T.R.A.P. Mason, Renee", file: "aint-no-way.mp3", cover: "aint-no-way.png" },
+      { title: "A Poets Nightmare", artist: "T.R.A.P. Mason", file: "a-poets-nightmare.mp3", cover: "a-poets-nightmare.png" },
+      { title: "Big Dreams Loud City", artist: "T.R.A.P. Mason", file: "big-dreams-loud-city.mp3", cover: "big-dreams-loud-city.png" },
+      { title: "Close To You", artist: "T.R.A.P. Mason, Melinda Jackson", file: "close-to-you.mp3", cover: "close-to-you.png" },
+      { title: "Get Away", artist: "T.R.A.P. Mason", file: "get-away.mp3", cover: "get-away.png" },
+      { title: "Look At Us", artist: "T.R.A.P. Mason, Benny Boy", file: "look-at-us.mp3", cover: "look-at-us.png" },
+      { title: "Mi Amore", artist: "T.R.A.P. Mason, Alisha", file: "mi-amore.mp3", cover: "mi-amore.png" },
+      { title: "More", artist: "T.R.A.P. Mason, Alicia Moore", file: "more.mp3", cover: "more.png" },
+      { title: "No Fucks", artist: "T.R.A.P. Mason", file: "no-fucks.mp3", cover: "no-fucks.png" },
+      { title: "One Of Us", artist: "T.R.A.P. Mason", file: "one-of-us.mp3", cover: "one-of-us.png" },
+      { title: "Run It Up", artist: "T.R.A.P. Mason, Benny Boy", file: "run-it-up.mp3", cover: "run-it-up.png" },
+      { title: "Selfish", artist: "T.R.A.P. Mason, Benny Boy", file: "selfish.mp3", cover: "selfish.png" },
+      { title: "Simple", artist: "T.R.A.P. Mason, Benny Boy", file: "simple.mp3", cover: "simple.png" },
+      { title: "The Future", artist: "T.R.A.P. Mason, Benny Boy", file: "the-future.mp3", cover: "the-future.png" },
+      { title: "The Zoo", artist: "T.R.A.P. Mason", file: "the-zoo.mp3", cover: "the-zoo.png" },
+      { title: "Wait", artist: "T.R.A.P. Mason, Dizzy B", file: "wait.mp3", cover: "wait.png" },
+      { title: "Waves", artist: "T.R.A.P. Mason, Alisha B", file: "waves.mp3", cover: "waves.png" },
+      { title: "What You Need", artist: "T.R.A.P. Mason, Benny Boy", file: "what-you-need.mp3", cover: "what-you-need.png" },
+      { title: "Where You At", artist: "T.R.A.P. Mason, Benny Boy", file: "where-you-at.mp3", cover: "where-you-at.png" },
+    ];
+
+    let currentIndex = 0;
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('playBtn');
+    const playlist = document.getElementById('playlist');
+
+    function loadTrack(index) {
+      currentIndex = index;
+      document.getElementById('title').innerText = tracks[index].title;
+      document.getElementById('artist').innerText = tracks[index].artist;
+      document.getElementById('cover').src = tracks[index].cover;
+      audio.src = tracks[index].file;
+      updatePlaylistUI();
+    }
+
+    function togglePlay() {
+      if (audio.paused) {
+        audio.play();
+        playBtn.innerText = '⏸️';
+      } else {
+        audio.pause();
+        playBtn.innerText = '▶️';
+      }
+    }
+
+    function nextTrack() {
+      currentIndex = (currentIndex + 1) % tracks.length;
+      loadTrack(currentIndex);
+      audio.play();
+      playBtn.innerText = '⏸️';
+    }
+
+    function prevTrack() {
+      currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
+      loadTrack(currentIndex);
+      audio.play();
+      playBtn.innerText = '⏸️';
+    }
+
+    function updatePlaylistUI() {
+      playlist.innerHTML = '';
+      tracks.forEach((track, index) => {
+        const item = document.createElement('div');
+        item.className = 'playlist-item' + (index === currentIndex ? ' active' : '');
+        item.innerHTML = `<span>${index + 1}. ${track.title}</span><span>${track.artist}</span>`;
+        item.onclick = () => {
+          loadTrack(index);
+          audio.play();
+          playBtn.innerText = '⏸️';
+        };
+        playlist.appendChild(item);
+      });
+    }
+
+    loadTrack(currentIndex);
+  </script>
+</body>
+</html>
