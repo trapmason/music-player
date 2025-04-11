@@ -5,41 +5,82 @@
   <meta charset="UTF-8" />
   <title>Our Hero The Villain Music Player</title>
   <style>
-    body { font-family: sans-serif; background: #111; color: #fff; padding: 20px; }
-    .track { background: #222; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
-    .track h3 { margin: 0 0 5px; }
-    .track p { margin: 2px 0; font-size: 14px; color: #ccc; }
-    .track audio { width: 100%; margin-top: 10px; }
-    .track .actions { margin-top: 10px; display: flex; justify-content: space-between; align-items: center; }
-    .track button { background: #f57c00; color: #fff; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
-    .track .plays { font-size: 13px; color: #aaa; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8f8f8;
+      color: #111;
+      padding: 20px;
+    }
+    .player-container {
+      max-width: 800px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    .track {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+    .track h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+    .track p {
+      margin: 3px 0 10px;
+      color: #777;
+      font-size: 14px;
+    }
+    .track audio {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .track .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .track button {
+      background: #f57c00;
+      color: white;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .track button:hover {
+      background: #e56b00;
+    }
+    .track .plays {
+      font-size: 13px;
+      color: #999;
+    }
   </style>
 </head>
 <body>
-  <h1>🎧 Our Hero The Villain Player</h1>
-
-  <div id="player"></div>
+  <div class="player-container">
+    <h2 style="text-align:center;">🎧 Our Hero The Villain – Music Collection</h2>
+    <div id="player"></div>
+  </div>
 
   <script>
     const tracks = [
-      {
-        title: "Move Quick",
-        artist: "T.R.A.P. Mason, Benny Boy",
-        file: "move-quick.mp3",
-        buy: "https://www.ourherothevillain.com/product/move-quick"
-      },
-      {
-        title: "Stay Quiet",
-        artist: "T.R.A.P. Mason, Benny Boy",
-        file: "stay-quiet.mp3",
-        buy: "https://www.ourherothevillain.com/product/stay-quiet"
-      },
-      {
-        title: "Waves",
-        artist: "T.R.A.P. Mason, Alisha B",
-        file: "waves.mp3",
-        buy: "https://www.ourherothevillain.com/product/waves"
-      }
+      { title: "Move Quick", artist: "T.R.A.P. Mason, Benny Boy", file: "move-quick.mp3", buy: "https://www.ourherothevillain.com/product/move-quick" },
+      { title: "Stay Quiet", artist: "T.R.A.P. Mason, Benny Boy", file: "stay-quiet.mp3", buy: "https://www.ourherothevillain.com/product/stay-quiet" },
+      { title: "Waves", artist: "T.R.A.P. Mason, Alisha B", file: "waves.mp3", buy: "https://www.ourherothevillain.com/product/waves" },
+      { title: "Endz", artist: "T.R.A.P. Mason", file: "endz.mp3", buy: "https://www.ourherothevillain.com/product/endz" },
+      { title: "Look At Us", artist: "T.R.A.P. Mason, Benny Boy", file: "look-at-us.mp3", buy: "https://www.ourherothevillain.com/product/look-at-us" },
+      { title: "Run It Up", artist: "T.R.A.P. Mason", file: "run-it-up.mp3", buy: "https://www.ourherothevillain.com/product/run-it-up" },
+      { title: "Simple", artist: "T.R.A.P. Mason", file: "simple.mp3", buy: "https://www.ourherothevillain.com/product/simple" },
+      { title: "The Future", artist: "T.R.A.P. Mason", file: "the-future.mp3", buy: "https://www.ourherothevillain.com/product/the-future" },
+      { title: "Close To You", artist: "T.R.A.P. Mason", file: "close-to-you.mp3", buy: "https://www.ourherothevillain.com/product/close-to-you" },
+      { title: "Ain't No Way", artist: "T.R.A.P. Mason", file: "aint-no-way.mp3", buy: "https://www.ourherothevillain.com/product/aint-no-way" },
+      { title: "The Zoo", artist: "T.R.A.P. Mason", file: "the-zoo.mp3", buy: "https://www.ourherothevillain.com/product/the-zoo" }
     ];
 
     const playCounts = new Array(tracks.length).fill(0);
