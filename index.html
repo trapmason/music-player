@@ -30,7 +30,18 @@
     }
     .track {
       border-bottom: 1px solid #eee;
-      padding: 15px 0;
+      padding: 20px 0;
+      display: flex;
+      gap: 20px;
+    }
+    .track img.cover {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .track-content {
+      flex: 1;
     }
     .track h3 {
       margin: 0;
@@ -81,28 +92,28 @@
 
   <script>
     const tracks = [
-      { title: "Move Quick", artist: "T.R.A.P. Mason, Benny Boy", file: "move-quick.mp3", buy: "https://www.ourherothevillain.com/product/move-quick" },
-      { title: "Stay Quiet", artist: "T.R.A.P. Mason, Benny Boy", file: "stay-quiet.mp3", buy: "https://www.ourherothevillain.com/product/stay-quiet" },
-      { title: "Endz", artist: "T.R.A.P. Mason, Benny Boy", file: "endz.mp3", buy: "https://www.ourherothevillain.com/product/endz" },
-      { title: "Ain't No Way", artist: "T.R.A.P. Mason, Renee", file: "aint-no-way.mp3", buy: "https://www.ourherothevillain.com/product/aint-no-way" },
-      { title: "A Poets Nightmare", artist: "T.R.A.P. Mason", file: "a-poets-nightmare.mp3", buy: "https://www.ourherothevillain.com/product/a-poets-nightmare" },
-      { title: "Big Dreams Loud City", artist: "T.R.A.P. Mason", file: "big-dreams-loud-city.mp3", buy: "https://www.ourherothevillain.com/product/big-dreams-loud-city" },
-      { title: "Close To You", artist: "T.R.A.P. Mason, Melinda Jackson", file: "close-to-you.mp3", buy: "https://www.ourherothevillain.com/product/close-to-you" },
-      { title: "Get Away", artist: "T.R.A.P. Mason", file: "get-away.mp3", buy: "https://www.ourherothevillain.com/product/get-away" },
-      { title: "Look At Us", artist: "T.R.A.P. Mason, Benny Boy", file: "look-at-us.mp3", buy: "https://www.ourherothevillain.com/product/look-at-us" },
-      { title: "Mi Amore", artist: "T.R.A.P. Mason, Alisha", file: "mi-amore.mp3", buy: "https://www.ourherothevillain.com/product/mi-amore" },
-      { title: "More", artist: "T.R.A.P. Mason, Alicia Moore", file: "more.mp3", buy: "https://www.ourherothevillain.com/product/more" },
-      { title: "No Fucks", artist: "T.R.A.P. Mason", file: "no-fucks.mp3", buy: "https://www.ourherothevillain.com/product/no-fucks" },
-      { title: "One Of Us", artist: "T.R.A.P. Mason", file: "one-of-us.mp3", buy: "https://www.ourherothevillain.com/product/one-of-us" },
-      { title: "Run It Up", artist: "T.R.A.P. Mason, Benny Boy", file: "run-it-up.mp3", buy: "https://www.ourherothevillain.com/product/run-it-up" },
-      { title: "Selfish", artist: "T.R.A.P. Mason, Benny Boy", file: "selfish.mp3", buy: "https://www.ourherothevillain.com/product/selfish" },
-      { title: "Simple", artist: "T.R.A.P. Mason, Benny Boy", file: "simple.mp3", buy: "https://www.ourherothevillain.com/product/simple" },
-      { title: "The Future", artist: "T.R.A.P. Mason, Benny Boy", file: "the-future.mp3", buy: "https://www.ourherothevillain.com/product/the-future" },
-      { title: "The Zoo", artist: "T.R.A.P. Mason", file: "the-zoo.mp3", buy: "https://www.ourherothevillain.com/product/the-zoo" },
-      { title: "Wait", artist: "T.R.A.P. Mason, Dizzy B", file: "wait.mp3", buy: "https://www.ourherothevillain.com/product/wait" },
-      { title: "Waves", artist: "T.R.A.P. Mason, Alisha B", file: "waves.mp3", buy: "https://www.ourherothevillain.com/product/waves" },
-      { title: "What You Need", artist: "T.R.A.P. Mason, Benny Boy", file: "what-you-need.mp3", buy: "https://www.ourherothevillain.com/product/what-you-need" },
-      { title: "Where You At", artist: "T.R.A.P. Mason, Benny Boy", file: "where-you-at.mp3", buy: "https://www.ourherothevillain.com/product/where-you-at" }
+      { title: "Move Quick", artist: "T.R.A.P. Mason, Benny Boy", file: "move-quick.mp3", cover: "move-quick.png", buy: "https://www.ourherothevillain.com/product/move-quick" },
+      { title: "Stay Quiet", artist: "T.R.A.P. Mason, Benny Boy", file: "stay-quiet.mp3", cover: "stay-quiet.png", buy: "https://www.ourherothevillain.com/product/stay-quiet" },
+      { title: "Endz", artist: "T.R.A.P. Mason, Benny Boy", file: "endz.mp3", cover: "endz.png", buy: "https://www.ourherothevillain.com/product/endz" },
+      { title: "Ain't No Way", artist: "T.R.A.P. Mason, Renee", file: "aint-no-way.mp3", cover: "aint-no-way.png", buy: "https://www.ourherothevillain.com/product/aint-no-way" },
+      { title: "A Poets Nightmare", artist: "T.R.A.P. Mason", file: "a-poets-nightmare.mp3", cover: "a-poets-nightmare.png", buy: "https://www.ourherothevillain.com/product/a-poets-nightmare" },
+      { title: "Big Dreams Loud City", artist: "T.R.A.P. Mason", file: "big-dreams-loud-city.mp3", cover: "big-dreams-loud-city.png", buy: "https://www.ourherothevillain.com/product/big-dreams-loud-city" },
+      { title: "Close To You", artist: "T.R.A.P. Mason, Melinda Jackson", file: "close-to-you.mp3", cover: "close-to-you.png", buy: "https://www.ourherothevillain.com/product/close-to-you" },
+      { title: "Get Away", artist: "T.R.A.P. Mason", file: "get-away.mp3", cover: "get-away.png", buy: "https://www.ourherothevillain.com/product/get-away" },
+      { title: "Look At Us", artist: "T.R.A.P. Mason, Benny Boy", file: "look-at-us.mp3", cover: "look-at-us.png", buy: "https://www.ourherothevillain.com/product/look-at-us" },
+      { title: "Mi Amore", artist: "T.R.A.P. Mason, Alisha", file: "mi-amore.mp3", cover: "mi-amore.png", buy: "https://www.ourherothevillain.com/product/mi-amore" },
+      { title: "More", artist: "T.R.A.P. Mason, Alicia Moore", file: "more.mp3", cover: "more.png", buy: "https://www.ourherothevillain.com/product/more" },
+      { title: "No Fucks", artist: "T.R.A.P. Mason", file: "no-fucks.mp3", cover: "no-fucks.png", buy: "https://www.ourherothevillain.com/product/no-fucks" },
+      { title: "One Of Us", artist: "T.R.A.P. Mason", file: "one-of-us.mp3", cover: "one-of-us.png", buy: "https://www.ourherothevillain.com/product/one-of-us" },
+      { title: "Run It Up", artist: "T.R.A.P. Mason, Benny Boy", file: "run-it-up.mp3", cover: "run-it-up.png", buy: "https://www.ourherothevillain.com/product/run-it-up" },
+      { title: "Selfish", artist: "T.R.A.P. Mason, Benny Boy", file: "selfish.mp3", cover: "selfish.png", buy: "https://www.ourherothevillain.com/product/selfish" },
+      { title: "Simple", artist: "T.R.A.P. Mason, Benny Boy", file: "simple.mp3", cover: "simple.png", buy: "https://www.ourherothevillain.com/product/simple" },
+      { title: "The Future", artist: "T.R.A.P. Mason, Benny Boy", file: "the-future.mp3", cover: "the-future.png", buy: "https://www.ourherothevillain.com/product/the-future" },
+      { title: "The Zoo", artist: "T.R.A.P. Mason", file: "the-zoo.mp3", cover: "the-zoo.png", buy: "https://www.ourherothevillain.com/product/the-zoo" },
+      { title: "Wait", artist: "T.R.A.P. Mason, Dizzy B", file: "wait.mp3", cover: "wait.png", buy: "https://www.ourherothevillain.com/product/wait" },
+      { title: "Waves", artist: "T.R.A.P. Mason, Alisha B", file: "waves.mp3", cover: "waves.png", buy: "https://www.ourherothevillain.com/product/waves" },
+      { title: "What You Need", artist: "T.R.A.P. Mason, Benny Boy", file: "what-you-need.mp3", cover: "what-you-need.png", buy: "https://www.ourherothevillain.com/product/what-you-need" },
+      { title: "Where You At", artist: "T.R.A.P. Mason, Benny Boy", file: "where-you-at.mp3", cover: "where-you-at.png", buy: "https://www.ourherothevillain.com/product/where-you-at" }
     ];
 
     const playCounts = new Array(tracks.length).fill(0);
@@ -111,6 +122,14 @@
     tracks.forEach((track, index) => {
       const container = document.createElement('div');
       container.className = 'track';
+
+      const cover = document.createElement('img');
+      cover.className = 'cover';
+      cover.src = track.cover;
+      cover.alt = track.title + ' cover';
+
+      const content = document.createElement('div');
+      content.className = 'track-content';
 
       const title = document.createElement('h3');
       title.textContent = track.title;
@@ -140,10 +159,13 @@
       actions.appendChild(buyBtn);
       actions.appendChild(countSpan);
 
-      container.appendChild(title);
-      container.appendChild(artist);
-      container.appendChild(audio);
-      container.appendChild(actions);
+      content.appendChild(title);
+      content.appendChild(artist);
+      content.appendChild(audio);
+      content.appendChild(actions);
+
+      container.appendChild(cover);
+      container.appendChild(content);
 
       player.appendChild(container);
     });
