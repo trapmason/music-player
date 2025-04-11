@@ -4,41 +4,464 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Hero The Villain - Music</title>
+  <title>Our Hero The Villain - Music Player</title>
   <style>
-    body { font-family: sans-serif; background: #f0f0f0; margin: 0; padding: 0; }
-    .player-container { max-width: 800px; margin: auto; background: white; padding: 20px; }
-    .track { border-bottom: 1px solid #ccc; padding: 10px 0; }
-    .track img { width: 60px; vertical-align: middle; }
-    .track-info { display: inline-block; margin-left: 10px; vertical-align: middle; }
-    .counter { font-size: 12px; color: gray; margin-left: 10px; }
-    audio { display: block; margin-top: 10px; width: 100%; }
-    .buy-link { display: inline-block; margin-top: 8px; background: #28a745; color: white; padding: 6px 12px; text-decoration: none; border-radius: 4px; }
+    body { font-family: sans-serif; background: #f0f0f0; margin: 0; padding: 20px; }
+    .player-container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 12px; }
+    .track { border-bottom: 1px solid #ccc; padding: 16px 0; display: flex; gap: 20px; }
+    .track img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; }
+    .track-info { flex-grow: 1; }
+    .track-title { font-size: 16px; font-weight: bold; margin: 0; }
+    .track-artist { font-size: 14px; color: #555; margin: 4px 0; }
+    .counter { font-size: 12px; color: #999; margin-top: 4px; }
+    audio { width: 100%; margin-top: 8px; }
+    .buy-link { margin-top: 10px; display: inline-block; background: #0070f3; color: #fff; padding: 8px 12px; text-decoration: none; border-radius: 4px; }
   </style>
 </head>
 <body>
   <div class="player-container">
-    <h1>Our Hero The Villain - Music Collection</h1>
+    <h2 style="text-align:center">Our Hero The Villain – Full Music Collection</h2>
+
+    <div class="track">
+      <img src="run-it-up.png" alt="Run It Up Cover" />
+      <div class="track-info">
+        <p class="track-title">Run It Up</p>
+        <p class="track-artist">T.R.A.P. Mason, Benny Boy</p>
+        <audio id="audio0" controls src="run-it-up.mp3"></audio>
+        <p class="counter">Plays: <span id="count0">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/run-it-up" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="endz.png" alt="Endz Cover" />
+      <div class="track-info">
+        <p class="track-title">Endz</p>
+        <p class="track-artist">T.R.A.P. Mason, Benny Boy</p>
+        <audio id="audio1" controls src="endz.mp3"></audio>
+        <p class="counter">Plays: <span id="count1">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/endz" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
     <div class="track">
       <img src="waves.png" alt="Waves Cover" />
       <div class="track-info">
-        <strong>Waves</strong><br/>
-        <span class="counter">Plays: <span id="playCount">0</span></span><br/>
-        <audio id="audio" controls src="waves.mp3"></audio>
+        <p class="track-title">Waves</p>
+        <p class="track-artist">T.R.A.P. Mason, Alisha B</p>
+        <audio id="audio2" controls src="waves.mp3"></audio>
+        <p class="counter">Plays: <span id="count2">0</span></p>
         <a class="buy-link" href="https://www.ourherothevillain.com/music/p/waves" target="_blank">Buy / Download</a>
       </div>
     </div>
+    
+    <div class="track">
+      <img src="close-to-you.png" alt="Close To You Cover" />
+      <div class="track-info">
+        <p class="track-title">Close To You</p>
+        <p class="track-artist">T.R.A.P. Mason, Melinda Jackson</p>
+        <audio id="audio3" controls src="close-to-you.mp3"></audio>
+        <p class="counter">Plays: <span id="count3">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/close-to-you" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="aint-no-way.png" alt="Ain't No Way Cover" />
+      <div class="track-info">
+        <p class="track-title">Ain't No Way</p>
+        <p class="track-artist">T.R.A.P. Mason, Renee</p>
+        <audio id="audio4" controls src="aint-no-way.mp3"></audio>
+        <p class="counter">Plays: <span id="count4">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/aint-no-way" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="the-zoo.png" alt="The Zoo Cover" />
+      <div class="track-info">
+        <p class="track-title">The Zoo</p>
+        <p class="track-artist">T.R.A.P. Mason</p>
+        <audio id="audio5" controls src="the-zoo.mp3"></audio>
+        <p class="counter">Plays: <span id="count5">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/the-zoo" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="move-quick.png" alt="Move Quick Cover" />
+      <div class="track-info">
+        <p class="track-title">Move Quick</p>
+        <p class="track-artist">T.R.A.P. Mason, Benny Boy</p>
+        <audio id="audio6" controls src="move-quick.mp3"></audio>
+        <p class="counter">Plays: <span id="count6">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/move-quick" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="simple.png" alt="Simple Cover" />
+      <div class="track-info">
+        <p class="track-title">Simple</p>
+        <p class="track-artist">T.R.A.P. Mason, Benny Boy</p>
+        <audio id="audio7" controls src="simple.mp3"></audio>
+        <p class="counter">Plays: <span id="count7">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/simple" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="look-at-us.png" alt="Look At Us Cover" />
+      <div class="track-info">
+        <p class="track-title">Look At Us</p>
+        <p class="track-artist">T.R.A.P. Mason, Benny Boy</p>
+        <audio id="audio8" controls src="look-at-us.mp3"></audio>
+        <p class="counter">Plays: <span id="count8">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/look-at-us" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="stay-quiet.png" alt="Stay Quiet Cover" />
+      <div class="track-info">
+        <p class="track-title">Stay Quiet</p>
+        <p class="track-artist">T.R.A.P. Mason, Benny Boy</p>
+        <audio id="audio9" controls src="stay-quiet.mp3"></audio>
+        <p class="counter">Plays: <span id="count9">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/stay-quiet" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="one-of-us.png" alt="One Of Us Cover" />
+      <div class="track-info">
+        <p class="track-title">One Of Us</p>
+        <p class="track-artist">T.R.A.P. Mason</p>
+        <audio id="audio10" controls src="one-of-us.mp3"></audio>
+        <p class="counter">Plays: <span id="count10">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/one-of-us" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="where-you-at.png" alt="Where You At Cover" />
+      <div class="track-info">
+        <p class="track-title">Where You At</p>
+        <p class="track-artist">T.R.A.P. Mason, Benny Boy</p>
+        <audio id="audio11" controls src="where-you-at.mp3"></audio>
+        <p class="counter">Plays: <span id="count11">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/where-you-at" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="the-future.png" alt="The Future Cover" />
+      <div class="track-info">
+        <p class="track-title">The Future</p>
+        <p class="track-artist">T.R.A.P. Mason, Benny Boy</p>
+        <audio id="audio12" controls src="the-future.mp3"></audio>
+        <p class="counter">Plays: <span id="count12">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/the-future" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="selfish.png" alt="Selfish Cover" />
+      <div class="track-info">
+        <p class="track-title">Selfish</p>
+        <p class="track-artist">T.R.A.P. Mason, Benny Boy</p>
+        <audio id="audio13" controls src="selfish.mp3"></audio>
+        <p class="counter">Plays: <span id="count13">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/selfish" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="a-poets-nightmare.png" alt="A Poet's Nightmare Cover" />
+      <div class="track-info">
+        <p class="track-title">A Poet's Nightmare</p>
+        <p class="track-artist">T.R.A.P. Mason</p>
+        <audio id="audio14" controls src="a-poets-nightmare.mp3"></audio>
+        <p class="counter">Plays: <span id="count14">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/a-poets-nightmare" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="big-dreams-loud-city.png" alt="Big Dreams Loud City Cover" />
+      <div class="track-info">
+        <p class="track-title">Big Dreams Loud City</p>
+        <p class="track-artist">T.R.A.P. Mason</p>
+        <audio id="audio15" controls src="big-dreams-loud-city.mp3"></audio>
+        <p class="counter">Plays: <span id="count15">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/big-dreams-loud-city" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="more.png" alt="More Cover" />
+      <div class="track-info">
+        <p class="track-title">More</p>
+        <p class="track-artist">T.R.A.P. Mason, Alicia Moore</p>
+        <audio id="audio16" controls src="more.mp3"></audio>
+        <p class="counter">Plays: <span id="count16">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/more" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="cold-dark.png" alt="Cold Dark Cover" />
+      <div class="track-info">
+        <p class="track-title">Cold Dark</p>
+        <p class="track-artist">T.R.A.P. Mason</p>
+        <audio id="audio17" controls src="cold-dark.mp3"></audio>
+        <p class="counter">Plays: <span id="count17">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/cold-dark" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="no-fucks.png" alt="No Fucks Cover" />
+      <div class="track-info">
+        <p class="track-title">No Fucks</p>
+        <p class="track-artist">T.R.A.P. Mason</p>
+        <audio id="audio18" controls src="no-fucks.mp3"></audio>
+        <p class="counter">Plays: <span id="count18">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/no-fucks" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="get-away.png" alt="Get Away Cover" />
+      <div class="track-info">
+        <p class="track-title">Get Away</p>
+        <p class="track-artist">T.R.A.P. Mason</p>
+        <audio id="audio19" controls src="get-away.mp3"></audio>
+        <p class="counter">Plays: <span id="count19">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/get-away" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="mi-amore.png" alt="Mi Amore Cover" />
+      <div class="track-info">
+        <p class="track-title">Mi Amore</p>
+        <p class="track-artist">T.R.A.P. Mason, Alisha</p>
+        <audio id="audio20" controls src="mi-amore.mp3"></audio>
+        <p class="counter">Plays: <span id="count20">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/mi-amore" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="wait.png" alt="Wait Cover" />
+      <div class="track-info">
+        <p class="track-title">Wait</p>
+        <p class="track-artist">T.R.A.P. Mason, Dizzy Banks</p>
+        <audio id="audio21" controls src="wait.mp3"></audio>
+        <p class="counter">Plays: <span id="count21">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/wait" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
+    <div class="track">
+      <img src="what-you-need.png" alt="What You Need Cover" />
+      <div class="track-info">
+        <p class="track-title">What You Need</p>
+        <p class="track-artist">T.R.A.P. Mason, Benny Boy</p>
+        <audio id="audio22" controls src="what-you-need.mp3"></audio>
+        <p class="counter">Plays: <span id="count22">0</span></p>
+        <a class="buy-link" href="https://www.ourherothevillain.com/music/p/what-you-need" target="_blank">Buy / Download</a>
+      </div>
+    </div>
+    
   </div>
-
   <script>
-    const audio = document.getElementById('audio');
-    const counter = document.getElementById('playCount');
-    let playCount = 0;
 
-    audio.addEventListener('play', () => {
-      playCount++;
-      counter.textContent = playCount;
+    const audio0 = document.getElementById('audio0');
+    const count0 = document.getElementById('count0');
+    let playCount0 = 0;
+    audio0.addEventListener('play', () => {
+      playCount0++;
+      count0.textContent = playCount0;
     });
+    
+    const audio1 = document.getElementById('audio1');
+    const count1 = document.getElementById('count1');
+    let playCount1 = 0;
+    audio1.addEventListener('play', () => {
+      playCount1++;
+      count1.textContent = playCount1;
+    });
+    
+    const audio2 = document.getElementById('audio2');
+    const count2 = document.getElementById('count2');
+    let playCount2 = 0;
+    audio2.addEventListener('play', () => {
+      playCount2++;
+      count2.textContent = playCount2;
+    });
+    
+    const audio3 = document.getElementById('audio3');
+    const count3 = document.getElementById('count3');
+    let playCount3 = 0;
+    audio3.addEventListener('play', () => {
+      playCount3++;
+      count3.textContent = playCount3;
+    });
+    
+    const audio4 = document.getElementById('audio4');
+    const count4 = document.getElementById('count4');
+    let playCount4 = 0;
+    audio4.addEventListener('play', () => {
+      playCount4++;
+      count4.textContent = playCount4;
+    });
+    
+    const audio5 = document.getElementById('audio5');
+    const count5 = document.getElementById('count5');
+    let playCount5 = 0;
+    audio5.addEventListener('play', () => {
+      playCount5++;
+      count5.textContent = playCount5;
+    });
+    
+    const audio6 = document.getElementById('audio6');
+    const count6 = document.getElementById('count6');
+    let playCount6 = 0;
+    audio6.addEventListener('play', () => {
+      playCount6++;
+      count6.textContent = playCount6;
+    });
+    
+    const audio7 = document.getElementById('audio7');
+    const count7 = document.getElementById('count7');
+    let playCount7 = 0;
+    audio7.addEventListener('play', () => {
+      playCount7++;
+      count7.textContent = playCount7;
+    });
+    
+    const audio8 = document.getElementById('audio8');
+    const count8 = document.getElementById('count8');
+    let playCount8 = 0;
+    audio8.addEventListener('play', () => {
+      playCount8++;
+      count8.textContent = playCount8;
+    });
+    
+    const audio9 = document.getElementById('audio9');
+    const count9 = document.getElementById('count9');
+    let playCount9 = 0;
+    audio9.addEventListener('play', () => {
+      playCount9++;
+      count9.textContent = playCount9;
+    });
+    
+    const audio10 = document.getElementById('audio10');
+    const count10 = document.getElementById('count10');
+    let playCount10 = 0;
+    audio10.addEventListener('play', () => {
+      playCount10++;
+      count10.textContent = playCount10;
+    });
+    
+    const audio11 = document.getElementById('audio11');
+    const count11 = document.getElementById('count11');
+    let playCount11 = 0;
+    audio11.addEventListener('play', () => {
+      playCount11++;
+      count11.textContent = playCount11;
+    });
+    
+    const audio12 = document.getElementById('audio12');
+    const count12 = document.getElementById('count12');
+    let playCount12 = 0;
+    audio12.addEventListener('play', () => {
+      playCount12++;
+      count12.textContent = playCount12;
+    });
+    
+    const audio13 = document.getElementById('audio13');
+    const count13 = document.getElementById('count13');
+    let playCount13 = 0;
+    audio13.addEventListener('play', () => {
+      playCount13++;
+      count13.textContent = playCount13;
+    });
+    
+    const audio14 = document.getElementById('audio14');
+    const count14 = document.getElementById('count14');
+    let playCount14 = 0;
+    audio14.addEventListener('play', () => {
+      playCount14++;
+      count14.textContent = playCount14;
+    });
+    
+    const audio15 = document.getElementById('audio15');
+    const count15 = document.getElementById('count15');
+    let playCount15 = 0;
+    audio15.addEventListener('play', () => {
+      playCount15++;
+      count15.textContent = playCount15;
+    });
+    
+    const audio16 = document.getElementById('audio16');
+    const count16 = document.getElementById('count16');
+    let playCount16 = 0;
+    audio16.addEventListener('play', () => {
+      playCount16++;
+      count16.textContent = playCount16;
+    });
+    
+    const audio17 = document.getElementById('audio17');
+    const count17 = document.getElementById('count17');
+    let playCount17 = 0;
+    audio17.addEventListener('play', () => {
+      playCount17++;
+      count17.textContent = playCount17;
+    });
+    
+    const audio18 = document.getElementById('audio18');
+    const count18 = document.getElementById('count18');
+    let playCount18 = 0;
+    audio18.addEventListener('play', () => {
+      playCount18++;
+      count18.textContent = playCount18;
+    });
+    
+    const audio19 = document.getElementById('audio19');
+    const count19 = document.getElementById('count19');
+    let playCount19 = 0;
+    audio19.addEventListener('play', () => {
+      playCount19++;
+      count19.textContent = playCount19;
+    });
+    
+    const audio20 = document.getElementById('audio20');
+    const count20 = document.getElementById('count20');
+    let playCount20 = 0;
+    audio20.addEventListener('play', () => {
+      playCount20++;
+      count20.textContent = playCount20;
+    });
+    
+    const audio21 = document.getElementById('audio21');
+    const count21 = document.getElementById('count21');
+    let playCount21 = 0;
+    audio21.addEventListener('play', () => {
+      playCount21++;
+      count21.textContent = playCount21;
+    });
+    
+    const audio22 = document.getElementById('audio22');
+    const count22 = document.getElementById('count22');
+    let playCount22 = 0;
+    audio22.addEventListener('play', () => {
+      playCount22++;
+      count22.textContent = playCount22;
+    });
+    
   </script>
 </body>
 </html>
