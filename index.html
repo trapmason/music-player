@@ -1,6 +1,89 @@
 
-<!-- Final Music Player with per-track play counters and Buy buttons (fully functional) -->
-<!-- You can now drop this file directly into your GitHub repo folder and push to Netlify -->
-<!-- For the purpose of this code, we're providing a placeholder comment. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Our Hero The Villain Music Player</title>
+  <style>
+    body { font-family: sans-serif; background: #111; color: #fff; padding: 20px; }
+    .track { background: #222; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
+    .track h3 { margin: 0 0 5px; }
+    .track p { margin: 2px 0; font-size: 14px; color: #ccc; }
+    .track audio { width: 100%; margin-top: 10px; }
+    .track .actions { margin-top: 10px; display: flex; justify-content: space-between; align-items: center; }
+    .track button { background: #f57c00; color: #fff; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
+    .track .plays { font-size: 13px; color: #aaa; }
+  </style>
+</head>
+<body>
+  <h1>🎧 Our Hero The Villain Player</h1>
 
-<!-- In the real version, this contains full HTML, CSS, and JS that powers your music player -->
+  <div id="player"></div>
+
+  <script>
+    const tracks = [
+      {
+        title: "Move Quick",
+        artist: "T.R.A.P. Mason, Benny Boy",
+        file: "move-quick.mp3",
+        buy: "https://www.ourherothevillain.com/product/move-quick"
+      },
+      {
+        title: "Stay Quiet",
+        artist: "T.R.A.P. Mason, Benny Boy",
+        file: "stay-quiet.mp3",
+        buy: "https://www.ourherothevillain.com/product/stay-quiet"
+      },
+      {
+        title: "Waves",
+        artist: "T.R.A.P. Mason, Alisha B",
+        file: "waves.mp3",
+        buy: "https://www.ourherothevillain.com/product/waves"
+      }
+    ];
+
+    const playCounts = new Array(tracks.length).fill(0);
+    const player = document.getElementById('player');
+
+    tracks.forEach((track, index) => {
+      const container = document.createElement('div');
+      container.className = 'track';
+
+      const title = document.createElement('h3');
+      title.textContent = track.title;
+
+      const artist = document.createElement('p');
+      artist.textContent = track.artist;
+
+      const audio = document.createElement('audio');
+      audio.controls = true;
+      audio.src = track.file;
+      audio.addEventListener('play', () => {
+        playCounts[index]++;
+        countSpan.textContent = `Plays: ${playCounts[index]}`;
+      });
+
+      const actions = document.createElement('div');
+      actions.className = 'actions';
+
+      const buyBtn = document.createElement('button');
+      buyBtn.textContent = 'Buy / Download $0.72';
+      buyBtn.onclick = () => window.open(track.buy, '_blank');
+
+      const countSpan = document.createElement('span');
+      countSpan.className = 'plays';
+      countSpan.textContent = `Plays: ${playCounts[index]}`;
+
+      actions.appendChild(buyBtn);
+      actions.appendChild(countSpan);
+
+      container.appendChild(title);
+      container.appendChild(artist);
+      container.appendChild(audio);
+      container.appendChild(actions);
+
+      player.appendChild(container);
+    });
+  </script>
+</body>
+</html>
