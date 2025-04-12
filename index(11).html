@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Hero The Villain - Player</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .player {
+      max-width: 720px;
+      margin: 40px auto;
+      background: #111;
+      border: 3px solid gold;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 12px gold;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .logo img {
+      max-width: 100px;
+    }
+    .album-art {
+      text-align: left;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+    .album-art img {
+      max-width: 100px;
+      border-radius: 8px;
+    }
+    audio {
+      width: 100%;
+      margin: 12px 0;
+    }
+    .controls {
+      text-align: center;
+      margin: 10px 0;
+    }
+    .controls button {
+      margin: 0 8px;
+      padding: 6px 10px;
+      background: #222;
+      color: white;
+      border: 1px solid gold;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .search-box {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      width: 90%;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+    }
+    .track {
+      border-bottom: 1px solid #333;
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .track span {
+      display: block;
+    }
+    .track-title {
+      font-weight: bold;
+      color: white;
+    }
+    .track-counter {
+      font-size: 0.85em;
+      color: #999;
+    }
+    .buy-button {
+      color: gold;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .pagination {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .pagination button {
+      margin: 0 5px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background: black;
+      color: gold;
+      border: 1px solid gold;
+    }
+  </style>
+</head>
+<body>
+  <div class="player">
+    <div class="logo"><img src="LOGO.png" alt="Logo"></div>
+    <div class="album-art"><img id="albumImage" src="RUN-IT-UP.png" alt="Album Cover"></div>
+    <audio id="audioPlayer" controls src=""></audio>
+    <div class="controls">
+      <button onclick="prevTrack()">Prev</button>
+      <button onclick="toggleShuffle()">Shuffle</button>
+      <button onclick="toggleRepeat()">Repeat</button>
+      <button onclick="nextTrack()">Next</button>
+    </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" onkeyup="searchTracks()" placeholder="Search tracks...">
+    </div>
+    <div id="trackList">
+      
+    <div class="track" data-index="0" data-title="Run It Up">
+      <span class="track-title">Run It Up</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Benny Boy</span><br>
+      <span class="track-counter">Plays: <span id="count0">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/run-it-up" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="1" data-title="Endz">
+      <span class="track-title">Endz</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Benny Boy</span><br>
+      <span class="track-counter">Plays: <span id="count1">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/endz" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="2" data-title="Waves">
+      <span class="track-title">Waves</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Alisha B</span><br>
+      <span class="track-counter">Plays: <span id="count2">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/waves" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="3" data-title="Close To You">
+      <span class="track-title">Close To You</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Melinda Jackson</span><br>
+      <span class="track-counter">Plays: <span id="count3">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/close-to-you" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="4" data-title="Ain't No Way">
+      <span class="track-title">Ain't No Way</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Renee</span><br>
+      <span class="track-counter">Plays: <span id="count4">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/aint-no-way" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="5" data-title="The Zoo">
+      <span class="track-title">The Zoo</span><br>
+      <span class="track-artist">T.R.A.P. Mason</span><br>
+      <span class="track-counter">Plays: <span id="count5">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/the-zoo" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="6" data-title="Move Quick">
+      <span class="track-title">Move Quick</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Benny Boy</span><br>
+      <span class="track-counter">Plays: <span id="count6">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/move-quick" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="7" data-title="Simple">
+      <span class="track-title">Simple</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Benny Boy</span><br>
+      <span class="track-counter">Plays: <span id="count7">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/simple" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="8" data-title="Look At Us">
+      <span class="track-title">Look At Us</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Benny Boy</span><br>
+      <span class="track-counter">Plays: <span id="count8">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/look-at-us" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="9" data-title="Stay Quiet">
+      <span class="track-title">Stay Quiet</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Benny Boy</span><br>
+      <span class="track-counter">Plays: <span id="count9">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/stay-quiet" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="10" data-title="One Of Us">
+      <span class="track-title">One Of Us</span><br>
+      <span class="track-artist">T.R.A.P. Mason</span><br>
+      <span class="track-counter">Plays: <span id="count10">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/one-of-us" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="11" data-title="Where You At">
+      <span class="track-title">Where You At</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Benny Boy</span><br>
+      <span class="track-counter">Plays: <span id="count11">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/where-you-at" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="12" data-title="The Future">
+      <span class="track-title">The Future</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Benny Boy</span><br>
+      <span class="track-counter">Plays: <span id="count12">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/the-future" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="13" data-title="Selfish">
+      <span class="track-title">Selfish</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Benny Boy</span><br>
+      <span class="track-counter">Plays: <span id="count13">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/selfish" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="14" data-title="A Poet's Nightmare">
+      <span class="track-title">A Poet's Nightmare</span><br>
+      <span class="track-artist">T.R.A.P. Mason</span><br>
+      <span class="track-counter">Plays: <span id="count14">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/a-poets-nightmare" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="15" data-title="Big Dreams Loud City">
+      <span class="track-title">Big Dreams Loud City</span><br>
+      <span class="track-artist">T.R.A.P. Mason</span><br>
+      <span class="track-counter">Plays: <span id="count15">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/big-dreams-loud-city" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="16" data-title="More">
+      <span class="track-title">More</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Alicia Moore</span><br>
+      <span class="track-counter">Plays: <span id="count16">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/more" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="17" data-title="Cold Dark">
+      <span class="track-title">Cold Dark</span><br>
+      <span class="track-artist">T.R.A.P. Mason</span><br>
+      <span class="track-counter">Plays: <span id="count17">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/cold-dark" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="18" data-title="No Fucks">
+      <span class="track-title">No Fucks</span><br>
+      <span class="track-artist">T.R.A.P. Mason</span><br>
+      <span class="track-counter">Plays: <span id="count18">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/no-fucks" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="19" data-title="Get Away">
+      <span class="track-title">Get Away</span><br>
+      <span class="track-artist">T.R.A.P. Mason</span><br>
+      <span class="track-counter">Plays: <span id="count19">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/get-away" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="20" data-title="Mi Amore">
+      <span class="track-title">Mi Amore</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Alisha</span><br>
+      <span class="track-counter">Plays: <span id="count20">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/mi-amore" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="21" data-title="Wait">
+      <span class="track-title">Wait</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Dizzy Banks</span><br>
+      <span class="track-counter">Plays: <span id="count21">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/wait" target="_blank">Buy Now</a>
+    </div>
+    
+
+    <div class="track" data-index="22" data-title="What You Need">
+      <span class="track-title">What You Need</span><br>
+      <span class="track-artist">T.R.A.P. Mason, Benny Boy</span><br>
+      <span class="track-counter">Plays: <span id="count22">0</span></span>
+      <a class="buy-button" href="https://www.ourherothevillain.com/music/p/what-you-need" target="_blank">Buy Now</a>
+    </div>
+    
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+  <script>
+    const tracks = document.querySelectorAll(".track");
+    const audioPlayer = document.getElementById("audioPlayer");
+    const albumImage = document.getElementById("albumImage");
+    const pagination = document.getElementById("pagination");
+    let currentTrackIndex = 0;
+    let isShuffling = false;
+    let isRepeating = false;
+    let tracksPerPage = 8;
+    let currentPage = 1;
+
+    function updatePagination() {
+      const totalPages = Math.ceil(tracks.length / tracksPerPage);
+      pagination.innerHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        let btn = document.createElement("button");
+        btn.innerText = i;
+        btn.onclick = () => showPage(i);
+        pagination.appendChild(btn);
+      }
+    }
+
+    function showPage(page) {
+      currentPage = page;
+      tracks.forEach((track, index) => {
+        const start = (page - 1) * tracksPerPage;
+        const end = page * tracksPerPage;
+        track.style.display = index >= start && index < end ? "flex" : "none";
+      });
+    }
+
+    function playTrack(index) {
+      const selected = tracks[index];
+      const audioSrc = selected.getAttribute("data-title").toLowerCase().replace(/ /g, "-") + ".mp3";
+      const imageSrc = audioSrc.replace(".mp3", ".png").toUpperCase();
+      albumImage.src = imageSrc;
+      audioPlayer.src = audioSrc;
+      audioPlayer.play();
+      currentTrackIndex = index;
+      const count = document.getElementById("count" + index);
+      count.textContent = parseInt(count.textContent) + 1;
+    }
+
+    tracks.forEach((track, index) => {
+      track.addEventListener("click", () => playTrack(index));
+    });
+
+    function prevTrack() {
+      currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+      playTrack(currentTrackIndex);
+    }
+
+    function nextTrack() {
+      currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+      playTrack(currentTrackIndex);
+    }
+
+    function toggleShuffle() {
+      isShuffling = !isShuffling;
+      alert("Shuffle: " + (isShuffling ? "On" : "Off"));
+    }
+
+    function toggleRepeat() {
+      isRepeating = !isRepeating;
+      alert("Repeat: " + (isRepeating ? "On" : "Off"));
+    }
+
+    function searchTracks() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      tracks.forEach(track => {
+        const title = track.getAttribute("data-title").toLowerCase();
+        track.style.display = title.includes(input) ? "flex" : "none";
+      });
+    }
+
+    updatePagination();
+    showPage(1);
+  </script>
+</body>
+</html>
