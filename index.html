@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,252 +14,203 @@
       padding: 0;
     }
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 30px auto;
       padding: 20px;
-      background: #111;
       border: 2px solid gold;
-      border-radius: 10px;
-      box-shadow: 0 0 20px gold;
+      border-radius: 12px;
+      background: #111;
+      box-shadow: 0 0 15px gold;
     }
     .logo {
-      text-align: center;
-    }
-    .logo img {
+      display: block;
+      margin: 0 auto 20px auto;
       max-height: 100px;
     }
-    .album-cover {
-      float: left;
-      margin-right: 20px;
+    .top-section {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
     }
-    .audio-controls {
+    .album-art {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .audio-block {
+      flex: 1;
+    }
+    audio {
+      width: 100%;
+    }
+    .controls {
       text-align: center;
-      margin: 10px 0;
+      margin-top: 10px;
     }
-    .buttons button {
-      margin: 5px;
-      padding: 6px 14px;
+    .controls button {
       background: black;
       border: 1px solid gold;
       color: gold;
+      padding: 6px 12px;
+      border-radius: 5px;
+      margin: 0 4px;
       cursor: pointer;
-      border-radius: 4px;
     }
     .search-box {
-      margin: 10px auto;
+      margin-top: 20px;
+      margin-bottom: 10px;
       text-align: center;
     }
-    input[type="text"] {
+    .search-box input {
       width: 90%;
       padding: 10px;
       font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #444;
     }
-    .track-list {
-      clear: both;
-      margin-top: 20px;
+    .tracklist {
       max-height: 400px;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
     .track {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid gold;
-      padding: 8px 0;
+      padding: 12px 0;
+      border-bottom: 1px solid #333;
+      cursor: pointer;
     }
-    .track-name {
+    .track-title {
       flex: 1;
     }
-    .track-plays {
+    .counter {
       color: gold;
-      margin: 0 20px;
+      margin-right: 20px;
     }
-    .track a {
+    .buy {
       color: gold;
+      text-decoration: none;
       font-weight: bold;
-    }
-    .pagination {
-      text-align: center;
-      margin-top: 15px;
-    }
-    .pagination button {
-      margin: 3px;
-      background: transparent;
-      border: 1px solid gold;
-      color: gold;
-      padding: 6px 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="logo"><img src="LOGO.png" alt="Logo"></div>
-    <div class="album-cover"><img src="run-it-up.png" alt="Album Cover" width="100"></div>
-    <div class="audio-controls">
-      <audio id="main-audio" controls src=""></audio>
+    <img src="LOGO.png" class="logo" alt="Logo">
+    <div class="top-section">
+      <img src="run-it-up.png" alt="Album Art" id="albumArt" class="album-art">
+      <div class="audio-block">
+        <audio id="player" controls>
+          <source src="run-it-up.mp3" type="audio/mp3">
+        </audio>
+        <div class="controls">
+          <button onclick="prevTrack()">Prev</button>
+          <button onclick="shuffleTrack()">Shuffle</button>
+          <button onclick="repeatTrack()">Repeat</button>
+          <button onclick="nextTrack()">Next</button>
+        </div>
+      </div>
     </div>
-    <div class="buttons">
-      <button onclick="prev()">Prev</button>
-      <button onclick="shuffle()">Shuffle</button>
-      <button onclick="repeat()">Repeat</button>
-      <button onclick="next()">Next</button>
-    </div>
-    <div class="search-box">
-      <input type="text" id="search" placeholder="Search tracks..." onkeyup="filterTracks()" />
-    </div>
-    <div class="track-list" id="track-list">
 
-      <div class="track" data-title="Run It Up">
-        <div class="track-name">Run It Up</div>
-        <div class="track-plays" id="count0">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/run-it-up" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Endz">
-        <div class="track-name">Endz</div>
-        <div class="track-plays" id="count1">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/endz" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Waves">
-        <div class="track-name">Waves</div>
-        <div class="track-plays" id="count2">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/waves" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Close To You">
-        <div class="track-name">Close To You</div>
-        <div class="track-plays" id="count3">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/close-to-you" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Aint No Way">
-        <div class="track-name">Aint No Way</div>
-        <div class="track-plays" id="count4">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/aint-no-way" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="The Zoo">
-        <div class="track-name">The Zoo</div>
-        <div class="track-plays" id="count5">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/the-zoo" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Move Quick">
-        <div class="track-name">Move Quick</div>
-        <div class="track-plays" id="count6">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/move-quick" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Simple">
-        <div class="track-name">Simple</div>
-        <div class="track-plays" id="count7">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/simple" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Look At Us">
-        <div class="track-name">Look At Us</div>
-        <div class="track-plays" id="count8">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/look-at-us" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Stay Quiet">
-        <div class="track-name">Stay Quiet</div>
-        <div class="track-plays" id="count9">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/stay-quiet" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="The Future">
-        <div class="track-name">The Future</div>
-        <div class="track-plays" id="count10">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/the-future" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Where You At">
-        <div class="track-name">Where You At</div>
-        <div class="track-plays" id="count11">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/where-you-at" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Selfish">
-        <div class="track-name">Selfish</div>
-        <div class="track-plays" id="count12">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/selfish" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="More">
-        <div class="track-name">More</div>
-        <div class="track-plays" id="count13">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/more" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="One Of Us">
-        <div class="track-name">One Of Us</div>
-        <div class="track-plays" id="count14">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/one-of-us" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Cold Dark">
-        <div class="track-name">Cold Dark</div>
-        <div class="track-plays" id="count15">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/cold-dark" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="No Fucks">
-        <div class="track-name">No Fucks</div>
-        <div class="track-plays" id="count16">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/no-fucks" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Get Away">
-        <div class="track-name">Get Away</div>
-        <div class="track-plays" id="count17">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/get-away" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="A Poets Nightmare">
-        <div class="track-name">A Poets Nightmare</div>
-        <div class="track-plays" id="count18">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/a-poets-nightmare" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Big Dreams Loud City">
-        <div class="track-name">Big Dreams Loud City</div>
-        <div class="track-plays" id="count19">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/big-dreams-loud-city" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Mi Amore">
-        <div class="track-name">Mi Amore</div>
-        <div class="track-plays" id="count20">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/mi-amore" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="Wait">
-        <div class="track-name">Wait</div>
-        <div class="track-plays" id="count21">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/wait" target="_blank">Buy Now</a>
-      </div>
-    
-      <div class="track" data-title="What You Need">
-        <div class="track-name">What You Need</div>
-        <div class="track-plays" id="count22">Plays: 0</div>
-        <a href="https://www.ourherothevillain.com/music/p/what-you-need" target="_blank">Buy Now</a>
-      </div>
-    
+    <div class="search-box">
+      <input type="text" id="search" placeholder="Search tracks..." onkeyup="filterTracks()">
     </div>
-    <div class="pagination">
-      <button>1</button><button>2</button><button>3</button>
-    </div>
+
+    <div class="tracklist" id="trackList"></div>
   </div>
-<script>
-  function filterTracks() {
-    let input = document.getElementById('search').value.toLowerCase();
-    let tracks = document.querySelectorAll('.track');
-    tracks.forEach(track => {
-      let title = track.dataset.title.toLowerCase();
-      track.style.display = title.includes(input) ? "" : "none";
+
+  <script>
+    const tracks = [
+      { title: "Run It Up", artist: "T.R.A.P. Mason, Benny Boy", slug: "run-it-up" },
+      { title: "Endz", artist: "T.R.A.P. Mason, Benny Boy", slug: "endz" },
+      { title: "Waves", artist: "T.R.A.P. Mason, Alisha B", slug: "waves" },
+      { title: "Close To You", artist: "T.R.A.P. Mason, Melinda Jackson", slug: "close-to-you" },
+      { title: "Ain't No Way", artist: "T.R.A.P. Mason, Renee", slug: "aint-no-way" },
+      { title: "The Zoo", artist: "T.R.A.P. Mason", slug: "the-zoo" },
+      { title: "Move Quick", artist: "T.R.A.P. Mason, Benny Boy", slug: "move-quick" },
+      { title: "Simple", artist: "T.R.A.P. Mason, Benny Boy", slug: "simple" },
+      { title: "Look At Us", artist: "T.R.A.P. Mason, Benny Boy", slug: "look-at-us" },
+      { title: "Stay Quiet", artist: "T.R.A.P. Mason, Benny Boy", slug: "stay-quiet" },
+      { title: "The Future", artist: "T.R.A.P. Mason, Benny Boy", slug: "the-future" },
+      { title: "Where You At", artist: "T.R.A.P. Mason, Benny Boy", slug: "where-you-at" },
+      { title: "Selfish", artist: "T.R.A.P. Mason, Benny Boy", slug: "selfish" },
+      { title: "More", artist: "T.R.A.P. Mason, Alicia Moore", slug: "more" },
+      { title: "One Of Us", artist: "T.R.A.P. Mason", slug: "one-of-us" },
+      { title: "Cold Dark", artist: "T.R.A.P. Mason", slug: "cold-dark" },
+      { title: "No Fucks", artist: "T.R.A.P. Mason", slug: "no-fucks" },
+      { title: "Get Away", artist: "T.R.A.P. Mason", slug: "get-away" },
+      { title: "A Poet's Nightmare", artist: "T.R.A.P. Mason", slug: "a-poets-nightmare" },
+      { title: "Big Dreams Loud City", artist: "T.R.A.P. Mason", slug: "big-dreams-loud-city" },
+      { title: "Mi Amore", artist: "T.R.A.P. Mason, Alisha", slug: "mi-amore" },
+      { title: "Wait", artist: "T.R.A.P. Mason, Dizzy Banks", slug: "wait" },
+      { title: "What You Need", artist: "T.R.A.P. Mason, Benny Boy", slug: "what-you-need" },
+    ];
+
+    let currentIndex = 0;
+    let playCounts = Array(tracks.length).fill(0);
+    const player = document.getElementById('player');
+    const albumArt = document.getElementById('albumArt');
+    const trackList = document.getElementById('trackList');
+
+    function loadTrackList() {
+      trackList.innerHTML = '';
+      tracks.forEach((track, index) => {
+        const div = document.createElement('div');
+        div.className = 'track';
+        div.innerHTML = `
+          <div class="track-title">${track.title}<br><small>${track.artist}</small></div>
+          <div class="counter" id="count${index}">Plays: 0</div>
+          <a class="buy" href="https://www.ourherothevillain.com/music/p/${track.slug}" target="_blank">Buy Now</a>
+        `;
+        div.addEventListener('click', () => selectTrack(index));
+        trackList.appendChild(div);
+      });
+    }
+
+    function selectTrack(index) {
+      currentIndex = index;
+      const slug = tracks[index].slug;
+      player.src = `${slug}.mp3`;
+      albumArt.src = `${slug}.png`;
+      player.play();
+    }
+
+    function nextTrack() {
+      currentIndex = (currentIndex + 1) % tracks.length;
+      selectTrack(currentIndex);
+    }
+
+    function prevTrack() {
+      currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
+      selectTrack(currentIndex);
+    }
+
+    function shuffleTrack() {
+      currentIndex = Math.floor(Math.random() * tracks.length);
+      selectTrack(currentIndex);
+    }
+
+    function repeatTrack() {
+      player.loop = !player.loop;
+    }
+
+    player.addEventListener('play', () => {
+      playCounts[currentIndex]++;
+      document.getElementById(`count${currentIndex}`).innerText = 'Plays: ' + playCounts[currentIndex];
     });
-  }
-</script>
+
+    function filterTracks() {
+      const input = document.getElementById('search').value.toLowerCase();
+      const tracksDOM = document.getElementsByClassName('track');
+      for (let i = 0; i < tracks.length; i++) {
+        const track = tracks[i];
+        const el = tracksDOM[i];
+        el.style.display = track.title.toLowerCase().includes(input) ? 'flex' : 'none';
+      }
+    }
+
+    loadTrackList();
+  </script>
 </body>
 </html>
